@@ -1,26 +1,393 @@
 @import "tailwindcss";
 
+/* ─── AirportFits Design System ─── */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Dark Theme (Primary / Default) */
+  --bg: #0A0A0A;
+  --bg-card: #111111;
+  --bg-card-hover: #161616;
+  --bg-overlay: rgba(10, 10, 10, 0.92);
+  --bg-elevated: #0D0D0D;
+  --bg-footer: #050505;
+  --border: rgba(255, 255, 255, 0.07);
+  --border-light: rgba(255, 255, 255, 0.12);
+  --cream: #F5F0EB;
+  --cream-dim: #C8C0B5;
+  --muted: #7A7570;
+  --gold: #C9A96E;
+  --gold-light: #E2C99A;
+  --gold-dark: #A07C42;
+  --error: #E05858;
+  --success: #5EBA8A;
+
+  /* Typography */
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Outfit', 'Helvetica Neue', sans-serif;
+
+  /* Layout */
+  --max-w: 1320px;
+  --gutter: clamp(16px, 4vw, 48px);
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --transition: 0.3s var(--ease-in-out);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ─── Light Theme ─── */
+[data-theme="light"] {
+  --bg: #F8F6F3;
+  --bg-card: #FFFFFF;
+  --bg-card-hover: #F0EDE8;
+  --bg-overlay: rgba(248, 246, 243, 0.92);
+  --bg-elevated: #F0EDE8;
+  --bg-footer: #E8E4DE;
+  --border: rgba(0, 0, 0, 0.08);
+  --border-light: rgba(0, 0, 0, 0.12);
+  --cream: #1A1612;
+  --cream-dim: #4A4540;
+  --muted: #8A857F;
+  --gold: #A07C42;
+  --gold-light: #8B6930;
+  --gold-dark: #7A5C2E;
+  --error: #C04040;
+  --success: #3D8F65;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ─── Theme Transition ─── */
+*,
+*::before,
+*::after {
+  transition: background-color 0.35s var(--ease-in-out),
+              color 0.35s var(--ease-in-out),
+              border-color 0.35s var(--ease-in-out),
+              box-shadow 0.35s var(--ease-in-out);
+}
+
+/* Don't let theme transitions override animation-driven elements */
+.fade-up,
+.marquee-track,
+.theme-icon {
+  transition: none;
+}
+.btn,
+.input,
+.theme-toggle {
+  transition: all var(--transition);
+}
+
+/* ─── Theme Toggle ─── */
+.theme-toggle {
+  background: none;
+  border: 1px solid var(--border-light);
+  color: var(--cream);
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  transition: all var(--transition);
+  padding: 0;
+  line-height: 1;
+}
+.theme-toggle:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+.theme-toggle:hover .theme-icon {
+  transform: rotate(30deg);
+}
+.theme-icon {
+  transition: transform 0.3s var(--ease-out);
+  display: block;
+}
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--gold-dark);
+  border-radius: 2px;
+}
+
+/* ─── Base ─── */
+* {
+  box-sizing: border-box;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--cream);
+  font-family: var(--font-sans);
+  font-weight: 300;
+  letter-spacing: 0.04em;
+  line-height: 1.7;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: var(--gold);
+  color: var(--bg);
+}
+
+/* ─── Typography Classes ─── */
+.font-serif {
+  font-family: var(--font-serif);
+}
+.font-sans {
+  font-family: var(--font-sans);
+}
+
+.display-xl {
+  font-family: var(--font-serif);
+  font-size: clamp(3.5rem, 10vw, 9rem);
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+}
+.display-lg {
+  font-family: var(--font-serif);
+  font-size: clamp(2.5rem, 6vw, 5.5rem);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+.display-md {
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 4vw, 3.2rem);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+.display-sm {
+  font-family: var(--font-serif);
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.label-xs {
+  font-family: var(--font-sans);
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+.label-sm {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.label-md {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+/* ─── Gold Line Divider ─── */
+.gold-line {
+  width: 40px;
+  height: 1px;
+  background: var(--gold);
+  border: none;
+}
+
+/* ─── Buttons ─── */
+.btn {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 14px 32px;
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+}
+.btn-primary {
+  background: var(--gold);
+  color: var(--bg);
+  border: 1px solid var(--gold);
+}
+.btn-primary:hover {
+  background: var(--gold-light);
+  border-color: var(--gold-light);
+}
+.btn-secondary {
+  background: transparent;
+  color: var(--cream);
+  border: 1px solid var(--border-light);
+}
+.btn-secondary:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+.btn-ghost {
+  background: transparent;
+  color: var(--gold);
+  border: 1px solid var(--gold);
+}
+.btn-ghost:hover {
+  background: var(--gold);
+  color: var(--bg);
+}
+.btn-lg {
+  padding: 18px 48px;
+  font-size: 0.76rem;
+}
+.btn-sm {
+  padding: 9px 20px;
+  font-size: 0.64rem;
+}
+
+/* ─── Form Inputs ─── */
+.input {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 300;
+  letter-spacing: 0.04em;
+  background: transparent;
+  border: 1px solid var(--border-light);
+  color: var(--cream);
+  padding: 14px 16px;
+  width: 100%;
+  outline: none;
+  transition: border-color var(--transition);
+}
+.input::placeholder {
+  color: var(--muted);
+  font-weight: 300;
+}
+.input:focus {
+  border-color: var(--gold);
+}
+.input-label {
+  font-family: var(--font-sans);
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 6px;
+  display: block;
+}
+
+/* ─── Animations ─── */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+}
+.fade-up.visible {
+  animation: fadeUp 0.7s var(--ease-out) forwards;
+}
+.delay-1 { animation-delay: 0.1s !important; }
+.delay-2 { animation-delay: 0.2s !important; }
+.delay-3 { animation-delay: 0.3s !important; }
+.delay-4 { animation-delay: 0.4s !important; }
+.delay-5 { animation-delay: 0.5s !important; }
+
+/* ─── Toast ─── */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-left: 3px solid var(--gold);
+  backdrop-filter: blur(20px);
+  padding: 16px 24px;
+  z-index: 1000;
+  animation: fadeUp 0.4s var(--ease-out);
+}
+.toast-success {
+  border-left-color: var(--success);
+}
+.toast-error {
+  border-left-color: var(--error);
+}
+
+/* ─── Marquee ─── */
+.marquee-track {
+  display: flex;
+  animation: marquee 20s linear infinite;
+  white-space: nowrap;
+}
+.marquee-track:hover {
+  animation-play-state: paused;
 }
