@@ -60,6 +60,11 @@ export default function Home() {
     e.preventDefault();
     setError("");
 
+    if (!name || !name.trim()) {
+      setError("Please enter your name");
+      return;
+    }
+
     if (!email || !email.includes("@")) {
       setError("Please enter a valid email address");
       return;
@@ -741,13 +746,20 @@ export default function Home() {
               onSubmit={handleSubmit}
               style={{
                 display: "flex",
-                gap: "8px",
+                flexDirection: "column",
+                gap: "10px",
                 maxWidth: "460px",
                 margin: "0 auto",
-                flexWrap: "wrap",
-                justifyContent: "center",
               }}
             >
+              <input
+                type="text"
+                className="input"
+                placeholder="Your name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                style={{ textAlign: "center" }}
+              />
               <input
                 type="email"
                 className="input"
@@ -755,21 +767,30 @@ export default function Home() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                style={{
-                  flex: "1 1 240px",
-                  textAlign: "center",
-                }}
+                style={{ textAlign: "center" }}
               />
+              {error && (
+                <p
+                  style={{
+                    color: "var(--error)",
+                    fontSize: "0.75rem",
+                    margin: "0",
+                    letterSpacing: "0.04em",
+                  }}
+                >
+                  {error}
+                </p>
+              )}
               <button
                 type="submit"
                 className="btn btn-primary"
                 disabled={loading}
                 style={{
-                  flex: "0 0 auto",
+                  width: "100%",
                   opacity: loading ? 0.7 : 1,
                 }}
               >
-                {loading ? "Joining..." : "Join →"}
+                {loading ? "Joining..." : "Join the Waitlist →"}
               </button>
             </form>
           ) : (
@@ -780,7 +801,7 @@ export default function Home() {
                 color: "var(--gold)",
               }}
             >
-              ✦ You&apos;re already on the list
+              ✦ Thank you for joining the waitlist
             </p>
           )}
         </div>
