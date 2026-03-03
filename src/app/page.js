@@ -149,13 +149,31 @@ export default function Home() {
       >
         <div
           style={{
-            fontFamily: "var(--font-serif)",
-            fontSize: "1.5rem",
-            fontWeight: 500,
-            letterSpacing: "0.08em",
+            display: "flex",
+            alignItems: "center",
+            gap: "10px",
           }}
         >
-          Airport<span style={{ color: "var(--gold)" }}>Fits</span>
+          <img
+            src="/favicon.jpg"
+            alt="AirportFits"
+            style={{
+              width: "32px",
+              height: "32px",
+              borderRadius: "50%",
+              objectFit: "cover",
+            }}
+          />
+          <span
+            style={{
+              fontFamily: "var(--font-serif)",
+              fontSize: "1.5rem",
+              fontWeight: 500,
+              letterSpacing: "0.08em",
+            }}
+          >
+            Airport<span style={{ color: "var(--gold)" }}>Fits</span>
+          </span>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
           <span
@@ -342,18 +360,6 @@ export default function Home() {
             >
               You&apos;re on the list
             </h3>
-            {position && (
-              <p
-                style={{
-                  fontFamily: "var(--font-serif)",
-                  fontSize: "1.2rem",
-                  color: "var(--gold)",
-                  marginBottom: "0.5rem",
-                }}
-              >
-                #{position} in line
-              </p>
-            )}
             <p
               style={{
                 color: "var(--cream-dim)",
@@ -580,25 +586,21 @@ export default function Home() {
               name: "Terminal",
               audience: "Men",
               fit: "Relaxed Oversized Fit",
-              price: "$129",
             },
             {
               name: "Runway",
               audience: "Men",
               fit: "Slim Modern Fit",
-              price: "$139",
             },
             {
               name: "Departure",
               audience: "Women",
               fit: "Cropped Hoodie + High-Waist",
-              price: "$129",
             },
             {
               name: "First Class",
               audience: "Women",
               fit: "Oversized Luxury Fit",
-              price: "$139",
             },
           ].map((item, i) => (
             <div
@@ -647,21 +649,10 @@ export default function Home() {
                 className="label-xs"
                 style={{
                   color: "var(--muted)",
-                  marginBottom: "1rem",
-                }}
-              >
-                {item.fit}
-              </p>
-              <p
-                style={{
-                  fontFamily: "var(--font-serif)",
-                  fontSize: "1.1rem",
-                  fontWeight: 300,
-                  color: "var(--gold)",
                   margin: 0,
                 }}
               >
-                {item.price}
+                {item.fit}
               </p>
             </div>
           ))}
@@ -815,13 +806,31 @@ export default function Home() {
         >
           <div
             style={{
-              fontFamily: "var(--font-serif)",
-              fontSize: "1.5rem",
-              fontWeight: 500,
-              letterSpacing: "0.08em",
+              display: "flex",
+              alignItems: "center",
+              gap: "10px",
             }}
           >
-            Airport<span style={{ color: "var(--gold)" }}>Fits</span>
+            <img
+              src="/favicon.jpg"
+              alt="AirportFits"
+              style={{
+                width: "36px",
+                height: "36px",
+                borderRadius: "50%",
+                objectFit: "cover",
+              }}
+            />
+            <span
+              style={{
+                fontFamily: "var(--font-serif)",
+                fontSize: "1.5rem",
+                fontWeight: 500,
+                letterSpacing: "0.08em",
+              }}
+            >
+              Airport<span style={{ color: "var(--gold)" }}>Fits</span>
+            </span>
           </div>
 
           <p

@@ -4,6 +4,10 @@ export const metadata = {
   title: "AirportFits — Land in Style",
   description:
     "Premium cotton travel wear designed for airport comfort and style. Join the waitlist for early access.",
+  icons: {
+    icon: "/favicon.jpg",
+    apple: "/favicon.jpg",
+  },
   openGraph: {
     title: "AirportFits — Land in Style",
     description: "Designed for the journey.",
